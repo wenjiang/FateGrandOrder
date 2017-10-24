@@ -1,4 +1,4 @@
-package com.wenjiang.wenbiao.fategrandorder;
+package com.wenjiang.wenbiao.fategrandorder.view;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * Created by wenbiao on 2017/10/19.
  */
 
-public class FloatView extends LinearLayout {
+public class FloatView extends LinearLayout implements View.OnClickListener{
     private Context mContext;
     private WindowManager windowManager;
     private View floatView;
@@ -66,6 +66,7 @@ public class FloatView extends LinearLayout {
         super(context, attrs);
         mContext = context;
         init();
+        setOnClickListener(this);
     }
 
     private void init() {
@@ -74,7 +75,7 @@ public class FloatView extends LinearLayout {
         windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         screenWidth = windowManager.getDefaultDisplay().getWidth();
         screenHeight = windowManager.getDefaultDisplay().getHeight();
-        floatView = View.inflate(mContext, R.layout.icon_layout, this);
+        floatView = View.inflate(mContext, R.layout.view_float, this);
         params = new WindowManager.LayoutParams();
         params.type = WindowManager.LayoutParams.TYPE_TOAST;
         params.format = PixelFormat.TRANSLUCENT;
@@ -104,6 +105,7 @@ public class FloatView extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
         screenWidth = windowManager.getDefaultDisplay().getWidth();
         screenHeight = windowManager.getDefaultDisplay().getHeight();
         switch (event.getAction()) {
@@ -260,11 +262,34 @@ public class FloatView extends LinearLayout {
     }
 
     public void showView() {
-        windowManager.addView(this, params);
+        try {
+            if (windowManager == null) {
+                init();
+            }
+            windowManager.addView(this, params);
+        }catch (Exception e){
+            //因为系统会经常调用AccessibilityService导致这里会重复添加View
+        }
     }
 
     public void setOnFloatViewClickListener(OnFloatViewClickListener onFloatViewClickListener) {
         this.onFloatViewClickListener = onFloatViewClickListener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.iv_icon:
+                findViewById(R.id.rl_menu).setVisibility(View.VISIBLE);
+                findViewById(R.id.iv_icon).setVisibility(View.GONE);
+                break;
+            case R.id.tv_back:
+                findViewById(R.id.rl_menu).setVisibility(View.GONE);
+                findViewById(R.id.iv_icon).setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
     }
 
     public interface OnFloatViewClickListener {

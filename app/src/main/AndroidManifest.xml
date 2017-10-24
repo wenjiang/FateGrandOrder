@@ -4,14 +4,14 @@
 
     <uses-permission android:name="android.permission.GET_TASKS" />
     <application
-        android:name="com.wenjiang.wenbiao.fategrandorder.BaseApplication"
+        android:name="com.wenjiang.wenbiao.fategrandorder.application.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wenjiang.wenbiao.fategrandorder.MainActivity">
+        <activity android:name="com.wenjiang.wenbiao.fategrandorder.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +19,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.wenjiang.wenbiao.fategrandorder.BackgroundService" />
         <service
-            android:name="com.wenjiang.wenbiao.fategrandorder.MyAccessibilityService"
+            android:name="com.wenjiang.wenbiao.fategrandorder.service.MyAccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
