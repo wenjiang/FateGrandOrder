@@ -3,7 +3,6 @@ package com.wenjiang.wenbiao.fategrandorder.service;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
