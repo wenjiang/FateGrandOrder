@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * Created by wenbiao on 2017/10/19.
  */
 
-public class FloatView extends LinearLayout implements View.OnClickListener{
+public class FloatView extends LinearLayout{
     private Context mContext;
     private WindowManager windowManager;
     private View floatView;
@@ -66,7 +66,6 @@ public class FloatView extends LinearLayout implements View.OnClickListener{
         super(context, attrs);
         mContext = context;
         init();
-        setOnClickListener(this);
     }
 
     private void init() {
@@ -105,7 +104,6 @@ public class FloatView extends LinearLayout implements View.OnClickListener{
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
         screenWidth = windowManager.getDefaultDisplay().getWidth();
         screenHeight = windowManager.getDefaultDisplay().getHeight();
         switch (event.getAction()) {
@@ -274,22 +272,6 @@ public class FloatView extends LinearLayout implements View.OnClickListener{
 
     public void setOnFloatViewClickListener(OnFloatViewClickListener onFloatViewClickListener) {
         this.onFloatViewClickListener = onFloatViewClickListener;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.iv_icon:
-                findViewById(R.id.rl_menu).setVisibility(View.VISIBLE);
-                findViewById(R.id.iv_icon).setVisibility(View.GONE);
-                break;
-            case R.id.tv_back:
-                findViewById(R.id.rl_menu).setVisibility(View.GONE);
-                findViewById(R.id.iv_icon).setVisibility(View.VISIBLE);
-                break;
-            default:
-                break;
-        }
     }
 
     public interface OnFloatViewClickListener {

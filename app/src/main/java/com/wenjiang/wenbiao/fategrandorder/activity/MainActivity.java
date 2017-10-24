@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.wenbiao.fategrandorder.R;
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
 import com.wenjiang.wenbiao.fategrandorder.view.FloatView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FloatView.OnFloatViewClickListener{
     private FloatView floatView;
     private AccessibilityReceiver receiver;
     private IntentFilter intentFilter;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         floatView = new FloatView(this);
-
+        floatView.setOnFloatViewClickListener(this);
         receiver = new AccessibilityReceiver();
         intentFilter = new IntentFilter();
         intentFilter.addAction(Constant.BroadcastAction.ACCESSIBILITY_BROADCAST_ACTION);
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onFloatViewClick() {
+        //TODO 点击展开菜单
     }
 
     public class AccessibilityReceiver extends BroadcastReceiver {

@@ -3,6 +3,7 @@ package com.wenjiang.wenbiao.fategrandorder.service;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
@@ -41,7 +42,12 @@ public class MyAccessibilityService extends AccessibilityService {
      * @return
      */
     private boolean isFgoBackground(AccessibilityEvent accessibilityEvent) {
-        if (accessibilityEvent.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED && prePackageName.contains(FGO_PACKAGE) && !accessibilityEvent.getPackageName().toString().contains(FGO_PACKAGE) && !accessibilityEvent.getPackageName().toString().equals(getPackageName())) {
+        String packageName = accessibilityEvent.getPackageName().toString();
+        if (accessibilityEvent.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+                && prePackageName.contains(FGO_PACKAGE)
+                && !packageName.contains(FGO_PACKAGE)
+                && !packageName.equals(getPackageName())
+                && !packageName.equals("com.android.systemui")) {
             return true;
         } else {
             return false;
