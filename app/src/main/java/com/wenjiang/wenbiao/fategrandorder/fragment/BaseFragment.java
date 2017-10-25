@@ -3,6 +3,7 @@ package com.wenjiang.wenbiao.fategrandorder.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -21,46 +22,56 @@ public abstract class BaseFragment extends Fragment {
     private boolean isFirstVisible = true;
     private boolean isFragmentVisible = false;
 
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        Log.e("tag", isVisibleToUser + "");
+//        if (rootView == null) {
+//            return;
+//        }
+//
+//        if (isFirstVisible && isVisibleToUser) {
+//            onFirstVisible();
+//            isFirstVisible = false;
+//            return;
+//        }
+//
+//        if (isVisibleToUser) {
+//            onUserVisible();
+//            isFragmentVisible = true;
+//            return;
+//        }
+//
+//        if (isFragmentVisible) {
+//            onUserInVisible();
+//            isFragmentVisible = false;
+//        }
+//    }
+//
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        if (rootView == null) {
+//            rootView = view;
+//            if (getUserVisibleHint()) {
+//                if (isFirstVisible) {
+//                    onFirstVisible();
+//                    isFirstVisible = false;
+//                }
+//
+//                onUserVisible();
+//                isFragmentVisible = true;
+//            }
+//        }
+//        super.onViewCreated(rootView, savedInstanceState);
+//    }
+
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (rootView == null) {
-            return;
-        }
-
-        if (isFirstVisible && isVisibleToUser) {
-            onFirstVisible();
-            isFirstVisible = false;
-            return;
-        }
-
-        if (isVisibleToUser) {
-            onUserVisible();
-            isFragmentVisible = true;
-            return;
-        }
-
-        if (isFragmentVisible) {
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
             onUserInVisible();
-            isFragmentVisible = false;
+        }else{
+            onUserVisible();
         }
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = view;
-            if (getUserVisibleHint()) {
-                if (isFirstVisible) {
-                    onFirstVisible();
-                    isFirstVisible = false;
-                }
-
-                onUserVisible();
-                isFragmentVisible = true;
-            }
-        }
-        super.onViewCreated(rootView, savedInstanceState);
     }
 }
