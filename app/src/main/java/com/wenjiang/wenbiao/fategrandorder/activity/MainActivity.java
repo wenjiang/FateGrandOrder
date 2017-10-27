@@ -6,13 +6,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
-import com.example.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.R;
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
+import com.wenjiang.wenbiao.fategrandorder.fragment.BaseFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.FragmentController;
 import com.wenjiang.wenbiao.fategrandorder.fragment.LiveFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.MainFragment;
@@ -20,7 +25,10 @@ import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
 import com.wenjiang.wenbiao.fategrandorder.view.FloatView;
 
-public class MainActivity extends FragmentActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends FragmentActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener, BaseFragment.DataObserverListener<String> {
     private FloatView floatView;
     private AccessibilityReceiver receiver;
     private IntentFilter intentFilter;
@@ -29,6 +37,7 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
     private LiveFragment liveFragment;
     private SettingFragment settingFragment;
     private FragmentController fragmentController;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +45,22 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
         setContentView(R.layout.activity_main);
 
         fragmentController = FragmentController.newInstance(R.id.fl_content, getSupportFragmentManager());
-        mainFragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("name", "你好");
+        mainFragment = MainFragment.newInstance(bundle);
         liveFragment = new LiveFragment();
         settingFragment = new SettingFragment();
+        fragmentController.recreateFragments(mainFragment, liveFragment);
+        fragmentController.setPreLoadFragment(liveFragment);
         fragmentController.show(mainFragment);
+        mainFragment.setDataListener(this);
+//        viewPager = (ViewPager) findViewById(R.id.vp_content);
+//        MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
+//        adapter.addFragment(mainFragment);
+//        adapter.addFragment(liveFragment);
+//        adapter.addFragment(settingFragment);
+//        viewPager.setAdapter(adapter);
+//        viewPager.setCurrentItem(0);
         floatView = new FloatView(this);
         floatView.setOnFloatViewClickListener(this);
         receiver = new AccessibilityReceiver();
@@ -72,6 +93,7 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
 
     @Override
     protected void onResume() {
+        Log.e(TAG, "onResume");
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
         if (!SettingUtils.isAccessibilitySettingsOn(this)) {
@@ -91,16 +113,29 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
         switch (view.getId()) {
             case R.id.tv_first:
                 fragmentController.show(mainFragment);
+//                viewPager.setCurrentItem(0);
                 break;
             case R.id.tv_second:
                 fragmentController.show(liveFragment);
+//                viewPager.setCurrentItem(1);
                 break;
             case R.id.tv_third:
                 fragmentController.show(settingFragment);
+//                viewPager.setCurrentItem(2);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void setData(String data) {
+        Log.e(TAG, data);
+    }
+
+    @Override
+    public String getData() {
+        return "Hello, World";
     }
 
     public class AccessibilityReceiver extends BroadcastReceiver {
@@ -115,6 +150,29 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
                 //收到FGO应用退到后台的消息
                 dismissView();
             }
+        }
+    }
+
+    class MyAdapter extends FragmentStatePagerAdapter {
+        private List<Fragment> fragmentList;
+
+        public MyAdapter(FragmentManager fm) {
+            super(fm);
+            this.fragmentList = new ArrayList<>();
+        }
+
+        public void addFragment(Fragment fragment){
+            fragmentList.add(fragment);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
         }
     }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.example.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

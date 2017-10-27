@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.R;
 
 /**
  * Created by wenbiao on 2017/10/24.
@@ -29,6 +29,16 @@ public class LiveFragment extends BaseFragment {
 
     }
 
+    @Override
+    public Bundle saveState() {
+        return null;
+    }
+
+    @Override
+    public void restoreState(Bundle bundle) {
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,5 +50,11 @@ public class LiveFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("tag", "创建LiveFragment");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("tag", "LiveFragment被销毁");
     }
 }

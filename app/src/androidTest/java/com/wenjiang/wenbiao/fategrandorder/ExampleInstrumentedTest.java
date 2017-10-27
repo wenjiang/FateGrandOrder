@@ -1,4 +1,4 @@
-package com.example.wenbiao.fategrandorder;
+package com.wenjiang.wenbiao.fategrandorder;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

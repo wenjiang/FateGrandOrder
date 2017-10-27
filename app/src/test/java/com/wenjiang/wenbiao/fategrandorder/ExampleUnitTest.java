@@ -1,4 +1,4 @@
-package com.example.wenbiao.fategrandorder;
+package com.wenjiang.wenbiao.fategrandorder;
 
 import org.junit.Test;
 
