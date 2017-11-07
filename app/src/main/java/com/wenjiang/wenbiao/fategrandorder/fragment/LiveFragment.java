@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 
 /**
  * Created by wenbiao on 2017/10/24.
@@ -49,12 +50,12 @@ public class LiveFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("tag", "创建LiveFragment");
+        Logger.e("tag", "创建LiveFragment");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("tag", "LiveFragment被销毁");
+        Logger.e("tag", "LiveFragment被销毁");
     }
 }

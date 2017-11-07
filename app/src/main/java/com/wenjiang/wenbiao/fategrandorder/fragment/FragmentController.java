@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,11 +88,11 @@ public final class FragmentController {
         List<Fragment> fragments = fragmentManager.getFragments();
         for(Fragment fg : fragments){
             if(fg == null){
-                Log.e("tag", "有个空的Fragment");
+                Logger.e("tag", "有个空的Fragment");
                 continue;
             }
 
-            Log.e("tag", fg.getClass().getName());
+            Logger.e("tag", fg.getClass().getName());
         }
         preFragmentTag = fragment.getClass().getName();
         transaction.commitAllowingStateLoss();

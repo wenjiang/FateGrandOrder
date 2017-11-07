@@ -22,8 +22,10 @@ public class MainFragment extends BaseFragment {
     @Args
     private String name;
 
-    public static MainFragment newInstance(Bundle bundle) {
+    public static MainFragment newInstance(String name) {
         MainFragment mainFragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
         mainFragment.setArguments(bundle);
         return mainFragment;
     }

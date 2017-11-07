@@ -1,11 +1,15 @@
 package com.wenjiang.wenbiao.fategrandorder.activity;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -22,13 +26,14 @@ import com.wenjiang.wenbiao.fategrandorder.fragment.FragmentController;
 import com.wenjiang.wenbiao.fategrandorder.fragment.LiveFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.MainFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
 import com.wenjiang.wenbiao.fategrandorder.view.FloatView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener, BaseFragment.DataObserverListener<String> {
+public class MainActivity extends BaseActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener, BaseFragment.DataObserverListener<String> {
     private FloatView floatView;
     private AccessibilityReceiver receiver;
     private IntentFilter intentFilter;
@@ -45,9 +50,7 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
         setContentView(R.layout.activity_main);
 
         fragmentController = FragmentController.newInstance(R.id.fl_content, getSupportFragmentManager());
-        Bundle bundle = new Bundle();
-        bundle.putString("name", "你好");
-        mainFragment = MainFragment.newInstance(bundle);
+        mainFragment = MainFragment.newInstance("你好");
         liveFragment = new LiveFragment();
         settingFragment = new SettingFragment();
         fragmentController.recreateFragments(mainFragment, liveFragment);
@@ -93,7 +96,6 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
 
     @Override
     protected void onResume() {
-        Log.e(TAG, "onResume");
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
         if (!SettingUtils.isAccessibilitySettingsOn(this)) {
@@ -108,6 +110,7 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
         //TODO 点击展开菜单
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -117,6 +120,10 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
                 break;
             case R.id.tv_second:
                 fragmentController.show(liveFragment);
+                requestPermissions(new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, 1);
 //                viewPager.setCurrentItem(1);
                 break;
             case R.id.tv_third:
@@ -161,7 +168,7 @@ public class MainActivity extends FragmentActivity implements FloatView.OnFloatV
             this.fragmentList = new ArrayList<>();
         }
 
-        public void addFragment(Fragment fragment){
+        public void addFragment(Fragment fragment) {
             fragmentList.add(fragment);
         }
 
