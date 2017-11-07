@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.wenjiang.wenbiao.fategrandorder.fragment.LiveFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.MainFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
 import com.wenjiang.wenbiao.fategrandorder.log.Logger;
+import com.wenjiang.wenbiao.fategrandorder.skin.IconManager;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
 import com.wenjiang.wenbiao.fategrandorder.view.FloatView;
 
@@ -128,6 +130,11 @@ public class MainActivity extends BaseActivity implements FloatView.OnFloatViewC
                 break;
             case R.id.tv_third:
                 fragmentController.show(settingFragment);
+                try {
+                    IconManager.getInstance(this).enableCompoment("test");
+                }catch (Exception e){
+                    Logger.e(e.toString());
+                }
 //                viewPager.setCurrentItem(2);
                 break;
             default:

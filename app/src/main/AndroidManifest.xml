@@ -22,6 +22,18 @@
             </intent-filter>
         </activity>
 
+        <activity-alias
+            android:icon="@mipmap/btn_back_black"
+            android:enabled="false"
+            android:name=".Test"
+            android:targetActivity="com.wenjiang.wenbiao.fategrandorder.activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <service
             android:name="com.wenjiang.wenbiao.fategrandorder.service.MyAccessibilityService"
             android:enabled="true"
