@@ -33,7 +33,10 @@ public final class IconManager {
         return iconManager;
     }
 
-    public void enableCompoment(String componentName) {
+    public void enableComponent(String componentName) throws Exception {
+        if(!iconInfos.contains(componentName)){
+            throw new Exception("Please enter right component");
+        }
         for (IconInfo iconInfo : iconInfos) {
             if (iconInfo.name.equals(componentName)) {
                 packageManager.setComponentEnabledSetting(iconInfo.componentName,

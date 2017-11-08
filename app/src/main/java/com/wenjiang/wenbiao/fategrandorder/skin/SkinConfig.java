@@ -1,6 +1,6 @@
 package com.wenjiang.wenbiao.fategrandorder.skin;
 
-import android.content.Context;
+import com.wenjiang.wenbiao.fategrandorder.database.sp.SharedPreferencesManager;
 
 public class SkinConfig {
 	public  static final String NAMESPACE 				=   "http://schemas.android.com/android/skin";
@@ -15,18 +15,17 @@ public class SkinConfig {
 	
 	/**
 	 * get path of last skin package path
-	 * @param context
-	 * @return path of skin package
+ 	 * @return path of skin package
 	 */
-	public static String getCustomSkinPath(Context context){
-		return PreferencesUtils.getString(context, PREF_CUSTOM_SKIN_PATH, DEFALT_SKIN);
+	public static String getCustomSkinPath(){
+		return SharedPreferencesManager.getInstance().getString(PREF_CUSTOM_SKIN_PATH, DEFALT_SKIN);
 	}
 	
-	public static void saveSkinPath(Context context, String path){
-		PreferencesUtils.putString(context, PREF_CUSTOM_SKIN_PATH, path);
+	public static void saveSkinPath(String path){
+		SharedPreferencesManager.getInstance().putString(PREF_CUSTOM_SKIN_PATH, path);
 	}
 	
-	public static boolean isDefaultSkin(Context context){
-		return DEFALT_SKIN.equals(getCustomSkinPath(context));
+	public static boolean isDefaultSkin(){
+		return DEFALT_SKIN.equals(getCustomSkinPath());
 	}
 }

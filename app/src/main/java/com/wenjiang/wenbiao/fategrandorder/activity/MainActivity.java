@@ -5,14 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -131,7 +128,7 @@ public class MainActivity extends BaseActivity implements FloatView.OnFloatViewC
             case R.id.tv_third:
                 fragmentController.show(settingFragment);
                 try {
-                    IconManager.getInstance(this).enableCompoment("test");
+                    IconManager.getInstance(this).enableComponent("test");
                 }catch (Exception e){
                     Logger.e(e.toString());
                 }

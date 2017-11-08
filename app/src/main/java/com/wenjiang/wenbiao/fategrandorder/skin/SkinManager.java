@@ -110,20 +110,20 @@ public class SkinManager implements ISkinLoader{
 	}
 	
 	public void restoreDefaultTheme(){
-		SkinConfig.saveSkinPath(context, SkinConfig.DEFALT_SKIN);
+		SkinConfig.saveSkinPath(SkinConfig.DEFALT_SKIN);
 		isDefaultSkin = true;
 		mResources = context.getResources();
 		notifySkinUpdate();
 	}
 
 	public void load(){
-		String skin = SkinConfig.getCustomSkinPath(context);
+		String skin = SkinConfig.getCustomSkinPath();
 		load(skin, null);
 	}
 	
 	public void load(ILoaderListener callback){
-		String skin = SkinConfig.getCustomSkinPath(context);
-		if(SkinConfig.isDefaultSkin(context)){ return; }
+		String skin = SkinConfig.getCustomSkinPath();
+		if(SkinConfig.isDefaultSkin()){ return; }
 		load(skin, callback);
 	}
 	
@@ -164,7 +164,7 @@ public class SkinManager implements ISkinLoader{
 						Resources superRes = context.getResources();
 						Resources skinResource = new Resources(assetManager,superRes.getDisplayMetrics(),superRes.getConfiguration());
 						
-						SkinConfig.saveSkinPath(context, skinPkgPath);
+						SkinConfig.saveSkinPath(skinPkgPath);
 						
 						skinPath = skinPkgPath;
 						isDefaultSkin = false;
