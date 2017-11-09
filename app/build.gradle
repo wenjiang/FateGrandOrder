@@ -59,6 +59,12 @@ dependencies {
     provided("com.tinkerpatch.tinker:tinker-android-anno:1.8.0")
     compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.1.8")
     compile "com.android.support:multidex:1.0.1"
+    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.google.code.gson:gson:2.3'
     testCompile 'junit:junit:4.12'
 }
 

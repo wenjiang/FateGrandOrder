@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.wenjiang.wenbiao.fategrandorder.async.AsyncTaskManager;
 import com.wenjiang.wenbiao.fategrandorder.skin.DynamicAttr;
 import com.wenjiang.wenbiao.fategrandorder.skin.IDynamicNewView;
 import com.wenjiang.wenbiao.fategrandorder.skin.ISkinUpdate;
@@ -22,6 +23,7 @@ import java.util.List;
 public class BaseActivity extends AppCompatActivity implements ISkinUpdate, IDynamicNewView {
     private boolean isResponseOnSkinChanging = true;
     private SkinInflaterFactory mSkinInflaterFactory;
+    protected AsyncTaskManager taskManager;
 
     @Override
     public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
@@ -46,6 +48,7 @@ public class BaseActivity extends AppCompatActivity implements ISkinUpdate, IDyn
             mSkinInflaterFactory = new SkinInflaterFactory();
             getLayoutInflater().setFactory(mSkinInflaterFactory);
 
+            taskManager = new AsyncTaskManager(this);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
@@ -59,6 +62,7 @@ public class BaseActivity extends AppCompatActivity implements ISkinUpdate, IDyn
     protected void onDestroy() {
         super.onDestroy();
         SkinManager.getInstance().detach(this);
+        taskManager.cancelAll();
     }
 
     @Override
@@ -77,5 +81,9 @@ public class BaseActivity extends AppCompatActivity implements ISkinUpdate, IDyn
 
     final protected void enableResponseOnSkinChanging(boolean enable){
         isResponseOnSkinChanging = enable;
+    }
+
+    public AsyncTaskManager getTaskManager(){
+        return taskManager;
     }
 }

@@ -3,6 +3,7 @@ package com.wenjiang.wenbiao.fategrandorder.application;
 import android.app.Application;
 
 import com.wenjiang.wenbiao.fategrandorder.BuildConfig;
+import com.wenjiang.wenbiao.fategrandorder.database.sp.SharedPreferencesManager;
 import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 import com.wenjiang.wenbiao.fategrandorder.skin.SkinManager;
 
@@ -20,5 +21,6 @@ public class BaseApplication extends Application {
         Logger.debug(BuildConfig.LOG_DEBUG);
         SkinManager.getInstance().init(this);
         SkinManager.getInstance().load();
+        SharedPreferencesManager.init(this);
     }
 }

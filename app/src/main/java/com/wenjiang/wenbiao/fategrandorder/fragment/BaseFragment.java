@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.wenjiang.wenbiao.fategrandorder.activity.BaseActivity;
 import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 import com.wenjiang.wenbiao.fategrandorder.skin.DynamicAttr;
 import com.wenjiang.wenbiao.fategrandorder.skin.IDynamicNewView;
@@ -106,6 +107,10 @@ public abstract class BaseFragment extends Fragment implements IDynamicNewView {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if(getActivity() instanceof BaseActivity){
+            ((BaseActivity)getActivity()).getTaskManager().cancelAll();
+        }
     }
 
     @Override
