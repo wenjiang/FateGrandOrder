@@ -1,6 +1,10 @@
 package com.wenjiang.wenbiao.fategrandorder.skin;
 
+import android.os.Environment;
+
 import com.wenjiang.wenbiao.fategrandorder.database.sp.SharedPreferencesManager;
+
+import java.io.File;
 
 public class SkinConfig {
 	public  static final String NAMESPACE 				=   "http://schemas.android.com/android/skin";
@@ -12,20 +16,7 @@ public class SkinConfig {
 	public 	static final int 		FROM_INTERNAL 			= 	0;
     public 	static final int 		FROM_EXTERNAL 			= 	1;
     public 	static final String ATTR_SKIN_ENABLE	    =   "enable";
-	
-	/**
-	 * get path of last skin package path
- 	 * @return path of skin package
-	 */
-	public static String getCustomSkinPath(){
-		return SharedPreferencesManager.getInstance().getString(PREF_CUSTOM_SKIN_PATH, DEFALT_SKIN);
-	}
-	
-	public static void saveSkinPath(String path){
-		SharedPreferencesManager.getInstance().putString(PREF_CUSTOM_SKIN_PATH, path);
-	}
-	
-	public static boolean isDefaultSkin(){
-		return DEFALT_SKIN.equals(getCustomSkinPath());
-	}
+	public  static final String SKIN_NAME = "fate.skin";
+	public static final String SKIN_DIR = Environment
+			.getExternalStorageDirectory() + File.separator + SKIN_NAME;
 }

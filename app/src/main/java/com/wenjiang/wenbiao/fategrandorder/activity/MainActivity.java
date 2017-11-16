@@ -16,6 +16,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
@@ -24,15 +25,16 @@ import com.wenjiang.wenbiao.fategrandorder.fragment.FragmentController;
 import com.wenjiang.wenbiao.fategrandorder.fragment.LiveFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.MainFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
-import com.wenjiang.wenbiao.fategrandorder.log.Logger;
-import com.wenjiang.wenbiao.fategrandorder.skin.IconManager;
+import com.wenjiang.wenbiao.fategrandorder.skin.ISkinUpdate;
+import com.wenjiang.wenbiao.fategrandorder.skin.SkinManager;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
 import com.wenjiang.wenbiao.fategrandorder.view.FloatView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener, BaseFragment.DataObserverListener<String> {
+public class MainActivity extends BaseActivity implements FloatView.OnFloatViewClickListener, View.OnClickListener, BaseFragment.DataObserverListener<String>,
+        ISkinUpdate{
     private FloatView floatView;
     private AccessibilityReceiver receiver;
     private IntentFilter intentFilter;
@@ -42,6 +44,15 @@ public class MainActivity extends BaseActivity implements FloatView.OnFloatViewC
     private SettingFragment settingFragment;
     private FragmentController fragmentController;
     private ViewPager viewPager;
+
+    @Override
+    public void onThemeUpdate() {
+        super.onThemeUpdate();
+        float dimension = SkinManager.getInstance().getDimension(R.dimen.int_name);
+        int color = SkinManager.getInstance().getColor(R.color.color_name);
+        ((TextView)findViewById(R.id.tv)).setTextColor(color);
+        ((TextView)findViewById(R.id.tv)).setTextSize(dimension);
+     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,11 +138,12 @@ public class MainActivity extends BaseActivity implements FloatView.OnFloatViewC
                 break;
             case R.id.tv_third:
                 fragmentController.show(settingFragment);
-                try {
-                    IconManager.getInstance(this).enableComponent("test");
-                }catch (Exception e){
-                    Logger.e(e.toString());
-                }
+//                try {
+//                    IconManager.getInstance(this).enableComponent("test");
+//                }catch (Exception e){
+//                    Logger.e(e.toString());
+//                }
+                SkinManager.getInstance().restoreDefaultTheme();
 //                viewPager.setCurrentItem(2);
                 break;
             default:

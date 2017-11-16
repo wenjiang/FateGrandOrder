@@ -18,9 +18,9 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         Logger.init();
+        SharedPreferencesManager.init(this);
         Logger.debug(BuildConfig.LOG_DEBUG);
         SkinManager.getInstance().init(this);
         SkinManager.getInstance().load();
-        SharedPreferencesManager.init(this);
     }
 }

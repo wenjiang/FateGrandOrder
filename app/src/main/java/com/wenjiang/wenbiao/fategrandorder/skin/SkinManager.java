@@ -21,18 +21,10 @@ import java.util.List;
 /**
  * Skin Manager Instance
  *
- * 
- * <ul>
- * <strong>global init skin manager, MUST BE CALLED FIRST ! </strong>
- * <li> {@link #init()} </li>
- * </ul>
+ *
  * <ul>
  * <strong>get single runtime instance</strong>
  * <li> {@link #getInstance()} </li>
- * </ul>
- * <ul>
- * <strong>attach a listener (Activity or fragment) to SkinManager</strong>
- * <li> {@link #onAttach(ISkinUpdate observer)} </li>
  * </ul>
  * <ul>
  * <strong>detach a listener (Activity or fragment) to SkinManager</strong>
@@ -110,21 +102,17 @@ public class SkinManager implements ISkinLoader{
 	}
 	
 	public void restoreDefaultTheme(){
-		SkinConfig.saveSkinPath(SkinConfig.DEFALT_SKIN);
 		isDefaultSkin = true;
 		mResources = context.getResources();
 		notifySkinUpdate();
 	}
 
 	public void load(){
-		String skin = SkinConfig.getCustomSkinPath();
-		load(skin, null);
+		load(SkinConfig.SKIN_DIR, null);
 	}
 	
 	public void load(ILoaderListener callback){
-		String skin = SkinConfig.getCustomSkinPath();
-		if(SkinConfig.isDefaultSkin()){ return; }
-		load(skin, callback);
+		load(SkinConfig.SKIN_DIR, callback);
 	}
 	
 	/**
@@ -163,16 +151,13 @@ public class SkinManager implements ISkinLoader{
 
 						Resources superRes = context.getResources();
 						Resources skinResource = new Resources(assetManager,superRes.getDisplayMetrics(),superRes.getConfiguration());
-						
-						SkinConfig.saveSkinPath(skinPkgPath);
-						
 						skinPath = skinPkgPath;
 						isDefaultSkin = false;
 						return skinResource;
 					}
 					return null;
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.e(e.toString());
 					return null;
 				}
 			};
@@ -238,6 +223,27 @@ public class SkinManager implements ISkinLoader{
 		
 		return trueColor;
 	}
+
+    public float getDimension(int resId){
+        float originDimension = context.getResources().getDimension(resId);
+        if(mResources == null || isDefaultSkin){
+            return originDimension;
+        }
+
+        String resName = context.getResources().getResourceEntryName(resId);
+
+        int trueResId = mResources.getIdentifier(resName, "dimension", skinPackageName);
+        float trueDimension = 0;
+
+        try{
+            trueDimension = mResources.getDimensionPixelOffset(trueResId);
+        }catch(NotFoundException e){
+            e.printStackTrace();
+            trueDimension = originDimension;
+        }
+
+        return trueDimension;
+    }
 	
 	@SuppressLint("NewApi")
 	public Drawable getDrawable(int resId){
