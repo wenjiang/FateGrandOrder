@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+    <dbname value="fate.db"/>
+    <version value="1"/>
+    <list>
+        <mapping class="com.wenjiang.wenbiao.fategrandorder.model.ActivityInfo"/>
+        <mapping class="com.wenjiang.wenbiao.fategrandorder.model.ConfigureInfo"/>
+        <mapping clsss="com.wenjiang.wenbiao.fategrandorder.model.CourtesyInfo"/>
+        <!--<mapping class="com.wenjiang.wenbiao.fategrandorder.model.FateInfo"/>-->
+        <mapping class="com.wenjiang.wenbiao.fategrandorder.model.FriendInfo"/>
+        <mapping class="com.wenjiang.wenbiao.fategrandorder.model.RecommendInfo"/>
+        <mapping class="com.wenjiang.wenbiao.fategrandorder.model.UserInfo"/>
+    </list>
+</database>

@@ -35,12 +35,15 @@ public class DatabaseStore {
     private SQLiteDatabase db;
     private Map<String, String> columnMap;
     private String whereMultiStr = " where ";
-    private Context context;
+    private static Context context; //TODO 静态的Context，不好，这个设计要重新考虑
 
-    private DatabaseStore() {
+    private DatabaseStore() throws Exception {
+        if(context == null){
+            throw new Exception("Please init on Application");
+        }
         columnMap = new HashMap<>();
         if (openHelper == null) {
-            openHelper = BaseSQLiteOpenHelper.getInstance(context);
+            openHelper = BaseSQLiteOpenHelper.getInstance(this.context);
             db = openHelper.getWritableDatabase();
         }
     }
@@ -50,18 +53,17 @@ public class DatabaseStore {
      *
      * @return DatabaseStore
      */
-    public static DatabaseStore getInstance() {
+    public static DatabaseStore getInstance() throws Exception {
         return new DatabaseStore();
     }
 
     /**
      * 初始化
      *
-     * @param context
+     * @param ctx
      */
-    public void init(Context context) {
-        BaseSQLiteOpenHelper.getInstance(context);
-        this.context = context;
+    public static void init(Context ctx) {
+        context = ctx;
     }
 
     /**

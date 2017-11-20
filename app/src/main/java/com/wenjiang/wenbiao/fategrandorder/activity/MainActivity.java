@@ -20,11 +20,13 @@ import android.widget.TextView;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
 import com.wenjiang.wenbiao.fategrandorder.constant.Constant;
+import com.wenjiang.wenbiao.fategrandorder.database.database.DatabaseStore;
 import com.wenjiang.wenbiao.fategrandorder.fragment.BaseFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.FragmentController;
 import com.wenjiang.wenbiao.fategrandorder.fragment.LiveFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.MainFragment;
 import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 import com.wenjiang.wenbiao.fategrandorder.skin.ISkinUpdate;
 import com.wenjiang.wenbiao.fategrandorder.skin.SkinManager;
 import com.wenjiang.wenbiao.fategrandorder.utils.SettingUtils;
@@ -83,6 +85,12 @@ public class MainActivity extends BaseActivity implements FloatView.OnFloatViewC
         findViewById(R.id.tv_first).setOnClickListener(this);
         findViewById(R.id.tv_second).setOnClickListener(this);
         findViewById(R.id.tv_third).setOnClickListener(this);
+
+        try {
+            DatabaseStore.getInstance().showTableList();
+        } catch (Exception e) {
+            Logger.e(e.toString());
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ public class BaseTable implements Serializable {
      *
      * @throws NoSuchTableException
      */
-    public void delete() throws NoSuchTableException {
+    public void delete() throws Exception {
         Map<String, Object> valueMap = new HashMap<>();
         String tableName = "";
         Field[] fields = this.getClass().getDeclaredFields();
@@ -56,7 +56,7 @@ public class BaseTable implements Serializable {
      *
      * @throws NoSuchTableException
      */
-    public void save() throws NoSuchTableException {
+    public void save() throws Exception {
         String tableName = "";
         Field[] fields = this.getClass().getDeclaredFields();
         if (this.getClass().isAnnotationPresent(Table.class)) {
