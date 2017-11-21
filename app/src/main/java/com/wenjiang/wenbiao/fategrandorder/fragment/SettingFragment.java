@@ -50,12 +50,10 @@ public class SettingFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Logger.e("tag", "SettingFragment被销毁");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.e("tag", "创建SettingFragment");
     }
 }

@@ -88,7 +88,6 @@ public abstract class BaseFragment extends Fragment implements IDynamicNewView {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Logger.e("tag", "onViewCreated");
         if (rootView == null) {
             rootView = view;
             if (getUserVisibleHint()) {

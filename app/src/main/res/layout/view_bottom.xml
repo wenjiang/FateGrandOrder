@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal">
+
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_bottom_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/color_divider_line"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>
+
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_bottom_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/color_divider_line"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>
+
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_bottom_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:textSize="16sp" />
+</LinearLayout>

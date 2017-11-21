@@ -50,12 +50,10 @@ public class LiveFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.e("tag", "创建LiveFragment");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Logger.e("tag", "LiveFragment被销毁");
     }
 }

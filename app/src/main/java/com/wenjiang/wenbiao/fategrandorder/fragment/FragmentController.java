@@ -85,15 +85,6 @@ public final class FragmentController {
             transaction.add(rootViewId, fragment, fragment.getClass().getName());
         }
 
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for(Fragment fg : fragments){
-            if(fg == null){
-                Logger.e("tag", "有个空的Fragment");
-                continue;
-            }
-
-            Logger.e("tag", fg.getClass().getName());
-        }
         preFragmentTag = fragment.getClass().getName();
         transaction.commitAllowingStateLoss();
     }

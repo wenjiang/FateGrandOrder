@@ -32,17 +32,14 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void onUserVisible() {
-        Log.e(TAG, "用户看到了");
     }
 
     @Override
     protected void onUserInVisible() {
-        Log.e(TAG, "用户看不到了");
     }
 
     @Override
     protected void onFirstVisible() {
-        Log.e(TAG, "第一次看到了");
         try {
             textView.setText("哈哈");
         } catch (Exception e) {
@@ -60,21 +57,18 @@ public class MainFragment extends BaseFragment {
     @Override
     public void restoreState(Bundle bundle) {
         String name = bundle.getString("key");
-        Log.e(TAG, name);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentInject.newInstance().injectValue(this);
-        Log.e(TAG, "创建MainFragment" + name);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String data = (String) listener.getData();
-        Log.e("tag", data);
         listener.setData("Hello, Fragment");
     }
 
@@ -90,6 +84,5 @@ public class MainFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         this.name = "哈哈";
-        Log.e(TAG, "MainFragment被销毁");
     }
 }

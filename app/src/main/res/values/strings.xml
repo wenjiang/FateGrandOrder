@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FateGrandOrder</string>
+    <string name="title_left">返回</string>
+    <string name="bottom_left">图鉴</string>
+    <string name="bottom_center">活动</string>
+    <string name="bottom_right">设置</string>
 </resources>

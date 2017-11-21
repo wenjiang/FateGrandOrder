@@ -8,8 +8,8 @@ import android.util.Log;
  * Created by wenbiao on 2017/10/23.
  */
 
-public final class SettingUtils {
-    private static final String TAG = "SettingUtils";
+public final class SettingUtil {
+    private static final String TAG = "SettingUtil";
 
     public static boolean isAccessibilitySettingsOn(Context context) {
         int accessibilityEnabled = 0;

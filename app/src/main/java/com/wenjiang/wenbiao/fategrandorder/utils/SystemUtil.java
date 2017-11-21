@@ -10,7 +10,7 @@ import java.util.Locale;
  * Created by wenbiao on 2017/11/20.
  */
 
-public class SystemUtil {
+public final class SystemUtil {
 
     /**
      * 获取当前手机系统语言。
