@@ -25,7 +25,7 @@ public class BaseApplication extends Application {
         SharedPreferencesManager.init(this);
         Logger.debug(BuildConfig.LOG_DEBUG);
         SkinManager.getInstance().init(this);
-//        SkinManager.getInstance().load();
+        SkinManager.getInstance().load();
         DatabaseStore.init(this);
     }
 }

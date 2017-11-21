@@ -143,6 +143,9 @@ public class SkinManager implements ISkinLoader{
 
 						PackageManager mPm = context.getPackageManager();
 						PackageInfo mInfo = mPm.getPackageArchiveInfo(skinPkgPath, PackageManager.GET_ACTIVITIES);
+						if(mInfo == null){
+							return null;
+						}
 						skinPackageName = mInfo.packageName;
 
 						AssetManager assetManager = AssetManager.class.newInstance();
