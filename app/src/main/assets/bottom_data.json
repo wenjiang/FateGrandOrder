@@ -1,0 +1,12 @@
+{
+  "code": 1,
+  "msg": "",
+  "data": {
+    "textSize": 14,
+    "textColor": "#6D4C41",
+    "divideColor": "#6D4C41",
+    "text": "图鉴,设置,活动",
+    "jump": "Main,Setting,Activity",
+    "icon":""
+  }
+}
