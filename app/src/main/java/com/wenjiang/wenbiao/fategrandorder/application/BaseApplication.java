@@ -7,6 +7,7 @@ import com.wenjiang.wenbiao.fategrandorder.crash.CrashManager;
 import com.wenjiang.wenbiao.fategrandorder.database.database.DatabaseStore;
 import com.wenjiang.wenbiao.fategrandorder.database.sp.SharedPreferencesManager;
 import com.wenjiang.wenbiao.fategrandorder.log.Logger;
+import com.wenjiang.wenbiao.fategrandorder.network.HttpManager;
 import com.wenjiang.wenbiao.fategrandorder.skin.SkinManager;
 import com.wenjiang.wenbiao.fategrandorder.utils.SystemUtil;
 
@@ -27,5 +28,7 @@ public class BaseApplication extends Application {
         SkinManager.getInstance().init(this);
         SkinManager.getInstance().load();
         DatabaseStore.init(this);
+        HttpManager.getInstance().setDebugIp("http://localhost:8080");
+        HttpManager.getInstance().debug(true);
     }
 }

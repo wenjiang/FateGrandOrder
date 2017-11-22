@@ -18,13 +18,18 @@ public class HttpManager {
     private String DEBUG_IP;
     private String DEFAULT_IP;
     private static boolean isDebug = false;
+    private static HttpManager httpManager;
 
     private HttpManager() {
         queryMap = new HashMap();
     }
 
     public static HttpManager getInstance() {
-        return new HttpManager();
+         if(httpManager == null){
+             httpManager = new HttpManager();
+         }
+
+         return httpManager;
     }
 
     public void setDefaultIp(String defaultIp){

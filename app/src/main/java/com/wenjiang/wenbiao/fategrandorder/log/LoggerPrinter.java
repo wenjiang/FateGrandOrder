@@ -175,7 +175,7 @@ final class LoggerPrinter implements Printer {
             if (json.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(json);
                 String message = jsonArray.toString(JSON_INDENT);
-                d(message);
+                e(message);
             }
         } catch (JSONException e) {
             e(e.getCause().getMessage() + "\n" + json);
