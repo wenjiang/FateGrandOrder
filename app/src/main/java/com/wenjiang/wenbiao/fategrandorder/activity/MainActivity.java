@@ -2,15 +2,12 @@ package com.wenjiang.wenbiao.fategrandorder.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
 import com.wenjiang.wenbiao.fategrandorder.skin.ISkinUpdate;
 import com.wenjiang.wenbiao.fategrandorder.view.viewcontainer.BottomViewController;
 import com.wenjiang.wenbiao.fategrandorder.view.viewcontainer.FloatViewController;
-import com.wenjiang.wenbiao.fategrandorder.view.viewcontainer.MainFragmentViewController;
 import com.wenjiang.wenbiao.fategrandorder.view.viewcontainer.TitleBarViewController;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,
@@ -26,14 +23,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        viewPager = (ViewPager) findViewById(R.id.vp_content);
-//        MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
-//        adapter.addFragment(mainFragment);
-//        adapter.addFragment(liveFragment);
-//        adapter.addFragment(settingFragment);
-//        viewPager.setAdapter(adapter);
-//        viewPager.setCurrentItem(0);
 
         TitleBarViewController titleBarViewController = TitleBarViewController.newInstance(this);
         BottomViewController bottomViewController = BottomViewController.newInstance(this);
@@ -62,7 +51,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
 //        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
     }

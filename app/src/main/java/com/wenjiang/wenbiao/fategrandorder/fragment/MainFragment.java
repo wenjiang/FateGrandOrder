@@ -1,14 +1,18 @@
 package com.wenjiang.wenbiao.fategrandorder.fragment;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
+import com.wenjiang.wenbiao.fategrandorder.view.AutoTextSizeManager;
 
 /**
  * Created by wenbiao on 2017/10/24.
@@ -17,8 +21,6 @@ import com.wenjiang.wenbiao.fategrandorder.R;
 public class MainFragment extends BaseFragment {
     private final String TAG = "MainFragment";
 
-    @BindView(id = R.id.text)
-    private TextView textView;
     @Args
     private String name;
 
@@ -40,11 +42,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void onFirstVisible() {
-        try {
-            textView.setText("哈哈");
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
+
     }
 
     @Override
@@ -65,6 +63,7 @@ public class MainFragment extends BaseFragment {
         FragmentInject.newInstance().injectValue(this);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -76,6 +75,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
+        AutoTextSizeManager.getInstance().setViewGroup((LinearLayout) view.findViewById(R.id.ll_header));
         FragmentInject.newInstance().injectView(view, this);
         return view;
     }

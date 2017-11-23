@@ -26,7 +26,7 @@ public final class BottomViewController extends BaseViewController implements Bo
     @Override
     protected void init(Activity activity) {
         mainFragmentViewController = MainFragmentViewController.newInstance(activity);
-        BottomMenuView bottomMenuView = activity.findViewById(R.id.view_bottom);
+        BottomMenuView bottomMenuView = (BottomMenuView)activity.findViewById(R.id.view_bottom);
         bottomData = TestBottomData.getInstance(activity);
         bottomMenuView.init(bottomData.getTextSize(), bottomData.getTextColor(), bottomData.getDivideColor(), bottomData.getText());
         bottomMenuView.setOnBottomClick(this);

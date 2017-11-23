@@ -2,15 +2,15 @@ package com.wenjiang.wenbiao.fategrandorder.view;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wenjiang.wenbiao.fategrandorder.log.Logger;
 import com.wenjiang.wenbiao.fategrandorder.utils.ViewUtil;
 
 import java.util.List;
@@ -51,10 +51,11 @@ public class BottomMenuView extends LinearLayout implements View.OnClickListener
             textView.setOnClickListener(this);
             addView(textView);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
-            layoutParams.height = LayoutParams.WRAP_CONTENT;
+            layoutParams.height = LayoutParams.MATCH_PARENT;
             layoutParams.width = LayoutParams.MATCH_PARENT;
             layoutParams.weight = 1;
             layoutParams.gravity = Gravity.CENTER_VERTICAL;
+            layoutParams.topMargin = ViewUtil.dip2px(getContext(), 7);
             textView.setLayoutParams(layoutParams);
             if (i != itemCount - 1) {
                 View divideView = new View(getContext());
@@ -68,11 +69,6 @@ public class BottomMenuView extends LinearLayout implements View.OnClickListener
                 divideView.setLayoutParams(divideLayoutParams);
             }
         }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public BottomMenuView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
