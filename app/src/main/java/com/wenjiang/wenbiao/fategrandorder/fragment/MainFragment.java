@@ -7,12 +7,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
-import com.wenjiang.wenbiao.fategrandorder.log.Logger;
-import com.wenjiang.wenbiao.fategrandorder.view.AutoTextSizeManager;
+import com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView;
 
 /**
  * Created by wenbiao on 2017/10/24.
@@ -75,7 +73,18 @@ public class MainFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
-        AutoTextSizeManager.getInstance().setViewGroup((LinearLayout) view.findViewById(R.id.ll_header));
+        DrawableTextView tvOutplacements = (DrawableTextView) view.findViewById(R.id.tv_outplacement);
+        DrawableTextView tvType = (DrawableTextView) view.findViewById(R.id.tv_type);
+        DrawableTextView tvStar = (DrawableTextView) view.findViewById(R.id.tv_star);
+        DrawableTextView tvSex = (DrawableTextView) view.findViewById(R.id.tv_sex);
+        DrawableTextView tvAttribute = (DrawableTextView) view.findViewById(R.id.tv_attribute);
+        DrawableTextView tvHome = (DrawableTextView) view.findViewById(R.id.tv_home);
+        tvOutplacements.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
+        tvType.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
+        tvStar.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
+        tvSex.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
+        tvAttribute.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
+        tvHome.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
         FragmentInject.newInstance().injectView(view, this);
         return view;
     }

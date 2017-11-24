@@ -1,58 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+<com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_header"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp">
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
         android:id="@+id/tv_outplacement"
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
         android:text="Lanucher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp" />
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
         android:text="天"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp" />
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
         android:text="男性"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp" />
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
         android:text="爱尔兰"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp" />
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_attribute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="right"
         android:text="恶"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="15sp" />
 
-    <com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustTextView
-        android:textSize="15sp"
-        android:gravity="center_horizontal"
-        android:layout_weight="1"
-        android:text="星数"
+    <com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView
+        android:id="@+id/tv_star"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="星数"
+        android:textSize="15sp" />
+</com.wenjiang.wenbiao.fategrandorder.view.AutoAdjustLinearLayout>
