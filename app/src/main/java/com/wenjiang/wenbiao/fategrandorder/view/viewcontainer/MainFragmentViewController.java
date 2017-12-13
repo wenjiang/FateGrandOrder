@@ -16,9 +16,6 @@ import com.wenjiang.wenbiao.fategrandorder.fragment.SettingFragment;
 
 public final class MainFragmentViewController extends BaseViewController implements BaseFragment.DataObserverListener<String> {
 
-    private MainFragment mainFragment;
-    private LiveFragment liveFragment;
-    private SettingFragment settingFragment;
     private FragmentController fragmentController;
 
     private MainFragmentViewController(Activity activity) {
@@ -32,10 +29,13 @@ public final class MainFragmentViewController extends BaseViewController impleme
     @Override
     protected void init(Activity activity) {
         fragmentController = FragmentController.newInstance(R.id.fl_content, ((FragmentActivity) activity).getSupportFragmentManager());
-        mainFragment = MainFragment.newInstance("你好");
-        liveFragment = new LiveFragment();
-        settingFragment = new SettingFragment();
-        fragmentController.show(mainFragment);
+        MainFragment mainFragment = MainFragment.newInstance("你好");
+        LiveFragment liveFragment = new LiveFragment();
+        SettingFragment settingFragment = new SettingFragment();
+        fragmentController.add("Main", mainFragment);
+        fragmentController.add("Activity", liveFragment);
+        fragmentController.add("Setting", settingFragment);
+        fragmentController.show("Main");
         mainFragment.setDataListener(this);
     }
 
@@ -49,15 +49,7 @@ public final class MainFragmentViewController extends BaseViewController impleme
         return null;
     }
 
-    public void showMainFragment(){
-        fragmentController.show(mainFragment);
-    }
-
-    public void showLiveFragment(){
-        fragmentController.show(liveFragment);
-    }
-
-    public void showSettingFragment(){
-        fragmentController.show(settingFragment);
+    public void showFragment(String tag) {
+        fragmentController.show(tag);
     }
 }

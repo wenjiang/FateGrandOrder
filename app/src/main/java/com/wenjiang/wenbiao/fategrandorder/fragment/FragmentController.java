@@ -24,16 +24,22 @@ public final class FragmentController {
     private int rootViewId;
     private List<String> deleteFragmentClazzList;
     private Map<String, Bundle> stateMap;
+    private Map<String, Fragment> fragmentMap;
 
     private FragmentController(int rootViewId, FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
         this.rootViewId = rootViewId;
         this.deleteFragmentClazzList = new ArrayList<>();
         this.stateMap = new HashMap<>();
+        this.fragmentMap = new HashMap<>();
     }
 
     public static FragmentController newInstance(int rootViewId, FragmentManager fragmentManager) {
         return new FragmentController(rootViewId, fragmentManager);
+    }
+
+    public void add(String tag, Fragment fragment){
+        fragmentMap.put(tag, fragment);
     }
 
     public void recreateFragments(Fragment... fragments) {
@@ -56,7 +62,8 @@ public final class FragmentController {
         transaction.commitAllowingStateLoss();
     }
 
-    public void show(Fragment fragment) {
+    public void show(String tag) {
+        Fragment fragment = fragmentMap.get(tag);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (!TextUtils.isEmpty(preFragmentTag)) {
             Fragment preFragment = fragmentManager.findFragmentByTag(preFragmentTag);

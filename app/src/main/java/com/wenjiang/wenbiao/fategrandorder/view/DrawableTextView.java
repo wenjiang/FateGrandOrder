@@ -3,9 +3,7 @@ package com.wenjiang.wenbiao.fategrandorder.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -32,22 +30,31 @@ public class DrawableTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public DrawableTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     public void setLeftDrawable(int drawableId, int radius, int leftMargin) {
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        if(layoutParams instanceof LinearLayout.LayoutParams){
-            ((LinearLayout.LayoutParams)layoutParams).leftMargin = ViewUtil.dip2px(getContext(), leftMargin);
-        }else if(layoutParams instanceof RelativeLayout.LayoutParams){
-            ((RelativeLayout.LayoutParams)layoutParams).leftMargin = ViewUtil.dip2px(getContext(), leftMargin);
+        if (layoutParams instanceof LinearLayout.LayoutParams) {
+            ((LinearLayout.LayoutParams) layoutParams).leftMargin = ViewUtil.dip2px(getContext(), leftMargin);
+        } else if (layoutParams instanceof RelativeLayout.LayoutParams) {
+            ((RelativeLayout.LayoutParams) layoutParams).leftMargin = ViewUtil.dip2px(getContext(), leftMargin);
         }
 
         setLayoutParams(layoutParams);
         Drawable drawable = getResources().getDrawable(drawableId);
         drawable.setBounds(0, 0, ViewUtil.dip2px(getContext(), radius), ViewUtil.dip2px(getContext(), radius));
         setCompoundDrawables(drawable, null, null, null);
+    }
+
+    public void setRightDrawable(int drawableId, int radius, int rightMargin){
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        if (layoutParams instanceof LinearLayout.LayoutParams) {
+            ((LinearLayout.LayoutParams) layoutParams).rightMargin = ViewUtil.dip2px(getContext(), rightMargin);
+        } else if (layoutParams instanceof RelativeLayout.LayoutParams) {
+            ((RelativeLayout.LayoutParams) layoutParams).rightMargin = ViewUtil.dip2px(getContext(), rightMargin);
+        }
+
+        setLayoutParams(layoutParams);
+        Drawable drawable = getResources().getDrawable(drawableId);
+        drawable.setBounds(0, 0, ViewUtil.dip2px(getContext(), radius), ViewUtil.dip2px(getContext(), radius));
+        setCompoundDrawables(null, null, drawable, null);
     }
 }
