@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.wenjiang.wenbiao.fategrandorder.R;
+import com.wenjiang.wenbiao.fategrandorder.test.TestTopData;
 import com.wenjiang.wenbiao.fategrandorder.view.DrawableTextView;
+import com.wenjiang.wenbiao.fategrandorder.view.SelectMenuView;
 
 /**
  * Created by wenbiao on 2017/10/24.
@@ -21,6 +23,8 @@ public class MainFragment extends BaseFragment {
 
     @Args
     private String name;
+    @BindView(id = R.id.select_menu_view)
+    private SelectMenuView selectMenuView;
 
     public static MainFragment newInstance(String name) {
         MainFragment mainFragment = new MainFragment();
@@ -67,24 +71,14 @@ public class MainFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         String data = (String) listener.getData();
         listener.setData("Hello, Fragment");
+        TestTopData testTopData = TestTopData.getInstance(getContext());
+        selectMenuView.init(testTopData.getMainCount(), testTopData.getText(), R.mipmap.ic_keyboard_arrow_down_black, 15, 10, R.color.color_divider_line);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
-        DrawableTextView tvOutplacements = (DrawableTextView) view.findViewById(R.id.tv_outplacement);
-        DrawableTextView tvType = (DrawableTextView) view.findViewById(R.id.tv_type);
-        DrawableTextView tvStar = (DrawableTextView) view.findViewById(R.id.tv_star);
-        DrawableTextView tvSex = (DrawableTextView) view.findViewById(R.id.tv_sex);
-        DrawableTextView tvAttribute = (DrawableTextView) view.findViewById(R.id.tv_attribute);
-        DrawableTextView tvHome = (DrawableTextView) view.findViewById(R.id.tv_home);
-        tvOutplacements.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
-        tvType.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
-        tvStar.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
-        tvSex.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
-        tvAttribute.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
-        tvHome.setRightDrawable(R.mipmap.ic_keyboard_arrow_down_black, 15, 0);
         FragmentInject.newInstance().injectView(view, this);
         return view;
     }

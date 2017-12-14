@@ -1,0 +1,17 @@
+{
+  "code": 1,
+  "msg": "",
+  "data": {
+    "textColor": "#6D4C41",
+    "divideColor": "#6D4C41",
+    "text": "职介,星级,属性,筛选",
+    "sub0": "Rider,Saber",
+    "sub1":"1,2,3,4,5",
+    "sub2":"混沌,善,恶",
+    "sub3":"类型,性别,故乡",
+    "grandCount":"3",
+    "grand0":"天,地,人",
+    "grand1":"男,女",
+    "grand2":"爱尔兰,英格兰,美国"
+  }
+}
